@@ -1,0 +1,50 @@
+#+title: Themes menu for StumpWM
+
+* Purpose
+This module provides:
+- macro ~define-theme~ to describe themes
+- command ~theme~ that shows menu with these themes
+
+* Install
+Download it somewhere, add to the modules load path, then load:
+#+begin_src lisp
+(add-to-load-path "~/opt/stumpwm-themes")
+(load-module "stumpwm-themes")
+#+end_src
+
+* Define themes
+  #+begin_src lisp
+
+    ;;; Examples
+
+    (stumpwm-themes:define-theme "Plan 9"
+      (set-bg-color "#ffffe8")
+      (set-fg-color "#007777")
+      (set-border-color "#007777")
+      (set-focus-color "#007777")
+      (set-unfocus-color "#007777")
+      (setf *mode-line-background-color* "#007777"
+	    *mode-line-foreground-color* "#ffffe8")
+      (setf *colors* '("#888838" "red" "green" "yellow"
+		       "blue" "#555599" "#007777" "#ffffe8")))
+
+    (stumpwm-themes:define-theme "Zenburn"
+      (set-bg-color "#353535")
+      (set-fg-color "white")
+      (set-border-color "#555")
+      (set-focus-color "#353535")
+      (set-unfocus-color "#353535")
+      (setf *mode-line-background-color* "#353535"
+	    *mode-line-foreground-color* "gray")
+      (setf *colors* '("#353535" "red" "green" "yellow"
+		       "blue" "gray" "#7F9F7F" "white")))
+  #+end_src
+
+* Usage
+Command ~theme~ shows the menu with all the themes defined with
+~define-theme~ macro.
+
+* Customization
+- if you don't use the mode line, then there is no need to re-launch
+  it. In this case, set ~*reload-mode-line-p*~ to ~NIL~
+- menu prompt can be changed in ~*menu-prompt*~
